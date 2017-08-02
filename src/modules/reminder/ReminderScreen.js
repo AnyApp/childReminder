@@ -4,7 +4,9 @@ import {
 	ScrollView,
 	Text,
 	TouchableOpacity,
+	TouchableHighlight,
 	View,
+	Image,
 	Platform
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -14,23 +16,52 @@ import { connect } from 'react-redux';
 
 // import * as moviesActions from './movies.actions';
 import ProgressBar from '../_global/ProgressBar';
-// import styles from './styles/Movies';
+import styles from './styles/ReminderScreen';
 import { iconsMap } from '../../utils/AppIcons';
 
 class ReminderScreen extends Component {
 	constructor(props) {
 		super(props);
-
+		this.props.navigator.setStyle({
+			navBarBackgroundColor: 'rgb(95, 135, 238)'
+		});
 		this.state = {
+			buttonOn: false,
+			uri: require('../../images/buttonOff.png')
 		};
+		this._offImage = require('../../images/buttonOff.png');
+		this._onImage = require('../../images/buttonOn.png');
+		this.onPressButton = this._onPressButton.bind(this);
+	}
+
+	_onPressButton() {
+		this.setState(
+			{
+				buttonOn: !this.state.buttonOn,
+
+			}
+		);
+		let imageUrl = this._offImage;
+		if (this.state.buttonOn) {
+			imageUrl = this._onImage;
+		}
+
+		this.setState(
+			{
+				uri: imageUrl
+			}
+		);
 	}
 
 	render() {
 		return (
-			<ScrollView contentContainerStyle={{ flex: 1, flexDirection: 'column', alignItems: 'flex-end' }}>
-				<Text>1</Text>
-                <Text>2</Text>
-                <Text>3</Text>
+			<ScrollView style={{ backgroundColor: 'rgb(95, 135, 238)' }} contentContainerStyle={{ flex: 1, flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+				<TouchableHighlight onPress={this.onPressButton}>
+					<Image
+						style={styles.image}
+						source={this.state.uri}
+					/>
+				</TouchableHighlight>
 			</ScrollView>
 		);
 	}

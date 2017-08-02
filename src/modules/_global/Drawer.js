@@ -21,16 +21,23 @@ class Drawer extends Component {
 
 	_openAbout() {
 		this._toggleDrawer();
-		this.props.navigator.showModal({
-			screen: 'movieapp.Search',
-			title: 'Search'
+		this.props.navigator.push({
+			screen: 'childReminder.SettingsScreen', // unique ID registered with Navigation.registerScreen
+			title: 'הגדרות', // navigation bar title of the pushed screen (optional)
+			animated: true, // does the push have transition animation or does it happen immediately (optional)
+			animationType: 'fade', // 'fade' (for both) / 'slide-horizontal' (for android) does the push have different transition animation (optional)
+			backButtonHidden: false // hide the back button altogether (optional)
 		});
 	}
 
 	_openSettings() {
 		this._toggleDrawer();
-		this.props.navigator.popToRoot({
-			screen: 'childReminder.ReminderScreen'
+		this.props.navigator.push({
+			screen: 'childReminder.SettingsScreen', // unique ID registered with Navigation.registerScreen
+			title: 'הגדרות', // navigation bar title of the pushed screen (optional)
+			animated: true, // does the push have transition animation or does it happen immediately (optional)
+			animationType: 'fade', // 'fade' (for both) / 'slide-horizontal' (for android) does the push have different transition animation (optional)
+			backButtonHidden: false // hide the back button altogether (optional)
 		});
 	}
 
