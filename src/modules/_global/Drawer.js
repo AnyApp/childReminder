@@ -3,10 +3,12 @@ import {
 	Text,
 	View,
 	TouchableOpacity,
-	ToastAndroid
+	ToastAndroid,
+	Image
 } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
-import LinearGradient from 'react-native-linear-gradient';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 import styles from './styles/Drawer';
 
@@ -14,11 +16,11 @@ class Drawer extends Component {
 	constructor(props) {
 		super(props);
 
-		this._goToMovies = this._goToMovies.bind(this);
-		this._openSearch = this._openSearch.bind(this);
+		this._openSettings = this._openSettings.bind(this);
+		this._openAbout = this._openAbout.bind(this);
 	}
 
-	_openSearch() {
+	_openAbout() {
 		this._toggleDrawer();
 		this.props.navigator.showModal({
 			screen: 'movieapp.Search',
@@ -26,57 +28,61 @@ class Drawer extends Component {
 		});
 	}
 
-	_goToMovies() {
+	_openSettings() {
 		this._toggleDrawer();
 		this.props.navigator.popToRoot({
-			screen: 'movieapp.Movies'
+			screen: 'childReminder.ReminderScreen'
 		});
 	}
 
 	_toggleDrawer() {
 		this.props.navigator.toggleDrawer({
 			to: 'closed',
-			side: 'left',
+			side: 'right',
 			animated: true
 		});
 	}
 
 	render() {
-		const iconSearch = (<Icon name="md-search" size={26} color="#9F9F9F" style={[styles.drawerListIcon, { paddingLeft: 2 }]} />);
-		const iconMovies = (<Icon name="md-film" size={26} color="#9F9F9F" style={[styles.drawerListIcon, { paddingLeft: 3 }]} />);
-		const iconTV = (<Icon name="ios-desktop" size={26} color="#9F9F9F" style={styles.drawerListIcon} />);
+		const iconSettings = (<SimpleLineIcons name="settings" size={26} color="blue" style={[styles.drawerListIcon]} />);
+		const iconInfo = (<Icon name="information-outline" size={26} color="blue" style={[styles.drawerListIcon]} />);
+		const iconContact = (<MaterialIcons name="chat" size={26} color="blue" style={[styles.drawerListIcon]} />);
 		return (
-			<LinearGradient colors={['rgba(0, 0, 0, 0.7)', 'rgba(0,0,0, 0.9)', 'rgba(0,0,0, 1)']} style={styles.linearGradient}>
-				<View style={styles.container}>
-					<View style={styles.drawerList}>
-						<TouchableOpacity onPress={this._openSearch}>
-							<View style={styles.drawerListItem}>
-								{iconSearch}
-								<Text style={styles.drawerListItemText}>
-									Search
-								</Text>
-							</View>
-						</TouchableOpacity>
-						<TouchableOpacity onPress={this._goToMovies}>
-							<View style={styles.drawerListItem}>
-								{iconMovies}
-								<Text style={styles.drawerListItemText}>
-									Movies
-								</Text>
-							</View>
-						</TouchableOpacity>
+			<View style={styles.container}>
+				<Image
+					style={styles.logo}
+					source={require('../../images/logo.png')}
+				/>
+				<View style={styles.drawerList}>
+					<TouchableOpacity onPress={this._openAbout}>
 						<View style={styles.drawerListItem}>
-							{iconTV}
-							<Text style={styles.drawerListItemText} onPress={() => ToastAndroid.show('Coming Soon!', ToastAndroid.SHORT)}>
-								TV Shows
+							<Text style={styles.drawerListItemText}>
+								הגדרות
 							</Text>
+							{iconSettings}
 						</View>
-					</View>
-					<Text style={styles._version}>
-						{/* 'v1.0.0' */}
-					</Text>
+					</TouchableOpacity>
+					<TouchableOpacity onPress={this._openSettings}>
+						<View style={styles.drawerListItem}>
+							<Text style={styles.drawerListItemText}>
+								אודות
+							</Text>
+							{iconInfo}
+						</View>
+					</TouchableOpacity>
+					<TouchableOpacity onPress={this._openSettings}>
+						<View style={styles.drawerListItem}>
+							<Text style={styles.drawerListItemText}>
+								צור קשר
+							</Text>
+							{iconContact}
+						</View>
+					</TouchableOpacity>
 				</View>
-			</LinearGradient>
+				<Text style={styles._version}>
+					{/* 'v1.0.0' */}
+				</Text>
+			</View>
 		);
 	}
 }

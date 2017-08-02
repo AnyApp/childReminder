@@ -2,35 +2,36 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
 	container: {
+		flex: 1
+	},
+	logo: {
 		flex: 1,
-		paddingLeft: 25,
-		justifyContent: 'center'
+		height: null,
+		width: null,
+		resizeMode: 'contain'
 	},
 	drawerList: {
-
+		flex: 3,
+		flexDirection: 'column',
+		justifyContent: 'flex-start',
+		alignItems: 'flex-end',
+		marginRight: 15
 	},
 	drawerListIcon: {
-		width: 27
+		width: 25,
+		fontSize: 17
 	},
 	drawerListItem: {
 		flexDirection: 'row',
+		justifyContent: 'flex-end',
 		alignItems: 'center',
 		marginBottom: 23
 	},
 	drawerListItemText: {
-		color: 'white',
-		fontWeight: 'bold',
-		fontSize: 23,
-		paddingLeft: 15,
-		flex: 1
-	},
-	linearGradient: {
-		// top: 0,
-		// left: 0,
-		// right: 0,
-		// height: 248,
-		// position: 'absolute'
-		flex: 1
+		color: 'grey',
+		fontSize: 18,
+		paddingRight: 15,
+		textAlign: 'right'
 	},
 	_version: {
 		color: '#3c3c3c',
