@@ -3,7 +3,6 @@ import {
 	Text,
 	View,
 	TouchableOpacity,
-	ToastAndroid,
 	Image
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -44,9 +43,9 @@ class Drawer extends Component {
 	}
 
 	render() {
-		const iconSettings = (<SimpleLineIcons name="settings" size={26} color="blue" style={[styles.drawerListIcon]} />);
-		const iconInfo = (<Icon name="information-outline" size={26} color="blue" style={[styles.drawerListIcon]} />);
-		const iconContact = (<MaterialIcons name="chat" size={26} color="blue" style={[styles.drawerListIcon]} />);
+		const iconSettings = (<SimpleLineIcons name="settings" size={26} color="blue" style={styles.drawerListIcon} />);
+		const iconInfo = (<Icon name="information-outline" size={26} color="blue" style={styles.drawerListIcon} />);
+		const iconContact = (<MaterialIcons name="chat" size={26} color="blue" style={styles.drawerListIcon} />);
 		return (
 			<View style={styles.container}>
 				<Image
