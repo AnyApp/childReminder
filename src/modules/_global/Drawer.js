@@ -21,9 +21,9 @@ class Drawer extends Component {
 
 	_openAbout() {
 		this._toggleDrawer();
-		this.props.navigator.push({
-			screen: 'childReminder.SettingsScreen', // unique ID registered with Navigation.registerScreen
-			title: 'הגדרות', // navigation bar title of the pushed screen (optional)
+		this.props.navigator.handleDeepLink({
+			screen: 'childReminder.AboutScreen',
+			title: 'אודות', // navigation bar title of the pushed screen (optional)
 			animated: true, // does the push have transition animation or does it happen immediately (optional)
 			animationType: 'fade', // 'fade' (for both) / 'slide-horizontal' (for android) does the push have different transition animation (optional)
 			backButtonHidden: false // hide the back button altogether (optional)
@@ -32,12 +32,14 @@ class Drawer extends Component {
 
 	_openSettings() {
 		this._toggleDrawer();
-		this.props.navigator.push({
-			screen: 'childReminder.SettingsScreen', // unique ID registered with Navigation.registerScreen
-			title: 'הגדרות', // navigation bar title of the pushed screen (optional)
-			animated: true, // does the push have transition animation or does it happen immediately (optional)
-			animationType: 'fade', // 'fade' (for both) / 'slide-horizontal' (for android) does the push have different transition animation (optional)
-			backButtonHidden: false // hide the back button altogether (optional)
+		this.props.navigator.handleDeepLink({
+			link: 'childReminder.SettingsScreen',
+			payload: {
+				title: 'הגדרות',
+				animated: true,
+				animationType: 'fade',
+				backButtonHidden: false
+			}
 		});
 	}
 
@@ -60,7 +62,7 @@ class Drawer extends Component {
 					source={require('../../images/logo.png')}
 				/>
 				<View style={styles.drawerList}>
-					<TouchableOpacity onPress={this._openAbout}>
+					<TouchableOpacity onPress={this._openSettings}>
 						<View style={styles.drawerListItem}>
 							<Text style={styles.drawerListItemText}>
 								הגדרות

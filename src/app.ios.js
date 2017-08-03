@@ -45,9 +45,8 @@ class App extends Component {
 				style: { // ( iOS only )
 					drawerShadow: true, // optional, add this if you want a side menu drawer shadow
 					contentOverlayColor: 'rgba(0,0,0,0.25)', // optional, add this if you want a overlay color when drawer is open
-					rightDrawerWidth: 66 // optional, add this if you want a define right drawer width (50=percent)
-				},
-				disableOpenGesture: false // optional, can the drawer be opened with a swipe instead of button
+					rightDrawerWidth: 70 // optional, add this if you want a define right drawer width (50=percent)
+				}
 			},
 			passProps: {}, // simple serializable object that will pass as props to all top screens (optional)
 			animationType: 'slide-down' // optional, add transition animation to root change: 'none', 'slide-down', 'fade'

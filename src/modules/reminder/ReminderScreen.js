@@ -32,6 +32,20 @@ class ReminderScreen extends Component {
 		this._offImage = require('../../images/buttonOff.png');
 		this._onImage = require('../../images/buttonOn.png');
 		this.onPressButton = this._onPressButton.bind(this);
+		this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
+	}
+
+	onNavigatorEvent(event) {
+		console.log(JSON.stringify(event));
+		if (event.type === 'DeepLink') {
+			this.props.navigator.push({
+				screen: event.link,
+				title: event.payload.title,
+				animated: event.payload.animated,
+				animationType: event.payload.animationType,
+				backButtonHidden: event.payload.backButtonHidden
+			});
+		}
 	}
 
 	_onPressButton() {
