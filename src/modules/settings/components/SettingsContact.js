@@ -16,7 +16,7 @@ import { connect } from 'react-redux';
 
 // import * as moviesActions from './movies.actions';
 
-class SettingsHeader extends Component {
+class SettingsContact extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -26,15 +26,13 @@ class SettingsHeader extends Component {
 	render() {
 		return (
 			<View style={styles.container}>
-				<Button title="אנשי קשר"></Button>
-				<Button title="שעת הגן"></Button>
-				<Button title="פרטי משתמש"></Button>
+				<Text>Contact</Text>
 			</View>
 		);
 	}
 }
 
-SettingsHeader.propTypes = {
+SettingsContact.propTypes = {
 	// actions: PropTypes.object.isRequired,
 	// nowPlayingMovies: PropTypes.object.isRequired,
 	// popularMovies: PropTypes.object.isRequired,
@@ -60,4 +58,4 @@ const styles = StyleSheet.create({
 	}
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(SettingsHeader);
+export default connect(mapStateToProps, mapDispatchToProps)(SettingsContact);

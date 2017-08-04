@@ -30,6 +30,7 @@ class App extends Component {
 	}
 
 	startApp() {
+		console.disableYellowBox = true;
 		Navigation.startSingleScreenApp({
 			screen: {
 				screen: 'childReminder.ReminderScreen', // unique ID registered with Navigation.registerScreen
