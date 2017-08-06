@@ -23,13 +23,13 @@ class SettingsTime extends Component {
 			isDateTimePickerVisible: false,
 			time: new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}),
 			days:{
-				"א": false,
-				"ב": false,
-				"ג": false,
-				"ד": false,
 				"ה": false,
-				"ו": false,
-				"ש": false
+				"ד": false,
+				"ג": false,
+				"ב": false,
+				"א": false,
+				"ש": false,
+				"ו": false
 			}
 		};
 
@@ -63,11 +63,15 @@ class SettingsTime extends Component {
 				<View style={styles.daysContainer}>
 					<Text style={styles.txt}>ימי השארת הילד בגן</Text>
 					<View style={styles.daysInputContainer}>
-						<TouchableHighlight style={styles.dayInput} underlayColor='#fff' onPress={this._showDateTimePicker}>
-							<Text style={styles.dayTxt}>
-								א
-							</Text>
-						</TouchableHighlight>
+						{Object.keys(this.state.days).map(function(keyName, keyIndex) {
+							{
+								return (<TouchableHighlight style={styles.dayInput} underlayColor='#fff' onPress={this._showDateTimePicker} key={keyIndex}>
+									<Text style={styles.dayTxt}>
+										{keyName}
+									</Text>
+								</TouchableHighlight>)
+							}
+						})}
 					</View>
 				</View>
 				<DateTimePicker
@@ -149,19 +153,27 @@ const styles = StyleSheet.create({
 		borderRadius:5,
 		borderWidth: 1,
 		borderColor: '#fff',
-		paddingTop:10,
-		paddingBottom:10,
-		paddingLeft: 17,
-		paddingRight: 17
+		paddingTop:1,
+		paddingBottom:1,
+		paddingLeft: 1,
+		paddingRight: 1,
+		height: 55,
+		width: 55,
+		marginLeft: 12,
+		marginBottom: 14,
+		flexDirection: 'column',
+		justifyContent: 'center',
+		alignItems: 'center'
 	},
 	daysInputContainer: {
 		marginTop: 15,
 		flexDirection: 'row',
-		justifyContent: 'flex-end'
+		justifyContent: 'flex-end',
+		flexWrap: 'wrap'
 	},
 	dayTxt: {
 		color: 'rgb(95, 135, 238)',
-		fontSize: 32
+		fontSize: 32,
 	}
 });
 
