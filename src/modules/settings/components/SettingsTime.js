@@ -12,7 +12,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import Swiper from 'react-native-swiper';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-
+import DateTimePicker from 'react-native-modal-datetime-picker';
 
 // import * as moviesActions from './movies.actions';
 
@@ -20,8 +20,23 @@ class SettingsTime extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			isDateTimePickerVisible: false,
+			time: new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})
 		};
+
+		this._handleDatePicked = this._handleDatePicked.bind(this);
+		this._hideDateTimePicker = this._hideDateTimePicker.bind(this);
+		this._showDateTimePicker = this._showDateTimePicker.bind(this);
 	}
+
+	_showDateTimePicker = () => this.setState({ isDateTimePickerVisible: true });
+
+	_hideDateTimePicker = () => this.setState({ isDateTimePickerVisible: false });
+
+	_handleDatePicked = (date) => {
+		this.setState( { time: date.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) })
+    	this._hideDateTimePicker();
+	};
 
 	render() {
 		return (
@@ -29,13 +44,20 @@ class SettingsTime extends Component {
 				<View style={styles.timeContainer}>
 					<Text style={styles.txt}>שעת השארת הילד בגן</Text>
 					<View style={styles.timeInputContainer}>
-						<TouchableHighlight style={styles.timeInput} underlayColor='#fff'>
+						<TouchableHighlight style={styles.timeInput} underlayColor='#fff' onPress={this._showDateTimePicker}>
 							<Text style={styles.timeTxt}>
-								07:50
+								{this.state.time}
 							</Text>
 						</TouchableHighlight>
 					</View>
 				</View>
+				<DateTimePicker
+					isVisible={this.state.isDateTimePickerVisible}
+					onConfirm={this._handleDatePicked}
+					onCancel={this._hideDateTimePicker}
+					mode="time"
+					is24Hour="true"
+				/>
 			</View>
 		);
 	}
