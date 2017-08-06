@@ -13,6 +13,7 @@ import Swiper from 'react-native-swiper';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import DateTimePicker from 'react-native-modal-datetime-picker';
+import { Map } from 'immutable';
 
 // import * as moviesActions from './movies.actions';
 
@@ -22,7 +23,7 @@ class SettingsTime extends Component {
 		this.state = {
 			isDateTimePickerVisible: false,
 			time: new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}),
-			days:{
+			days: Map({
 				"ה": false,
 				"ד": false,
 				"ג": false,
@@ -30,12 +31,24 @@ class SettingsTime extends Component {
 				"א": false,
 				"ש": false,
 				"ו": false
-			}
+			})
 		};
 
+		this.render = this.render.bind(this);
 		this._handleDatePicked = this._handleDatePicked.bind(this);
 		this._hideDateTimePicker = this._hideDateTimePicker.bind(this);
 		this._showDateTimePicker = this._showDateTimePicker.bind(this);
+		this._toggleDay = this._toggleDay.bind(this);
+	}
+
+	_toggleDay(day) {
+		return () => {
+			console.log(day);
+			let days = this.state.days.set(day, !this.state.days.get(day));
+			this.setState({
+				days: days
+			});
+		};
 	}
 
 	_showDateTimePicker = () => this.setState({ isDateTimePickerVisible: true });
@@ -63,10 +76,16 @@ class SettingsTime extends Component {
 				<View style={styles.daysContainer}>
 					<Text style={styles.txt}>ימי השארת הילד בגן</Text>
 					<View style={styles.daysInputContainer}>
-						{Object.keys(this.state.days).map(function(keyName, keyIndex) {
-							{
-								return (<TouchableHighlight style={styles.dayInput} underlayColor='#fff' onPress={this._showDateTimePicker} key={keyIndex}>
-									<Text style={styles.dayTxt}>
+						{Object.keys(this.state.days.toObject()).map((keyName, keyIndex) => {
+							if (this.state.days.get(keyName) == false){ // the code is crashing over this line
+								return (<TouchableHighlight style={styles.dayInputNotChoosen} underlayColor='#fff' onPress={this._toggleDay(keyName)} key={keyIndex}>
+									<Text style={styles.dayTxtNotChoosen}>
+										{keyName}
+									</Text>
+								</TouchableHighlight>)
+							} else {
+								return (<TouchableHighlight style={styles.dayInputChoosen} underlayColor='#fff' onPress={this._toggleDay(keyName)} key={keyIndex}>
+									<Text style={styles.dayTxtChoosen}>
 										{keyName}
 									</Text>
 								</TouchableHighlight>)
@@ -148,8 +167,25 @@ const styles = StyleSheet.create({
 	daysContainer: {
 		marginTop: 45
 	},
-	dayInput: {
+	dayInputChoosen: {
 		backgroundColor: 'rgb(227, 236, 253)',
+		borderRadius:5,
+		borderWidth: 1,
+		borderColor: '#fff',
+		paddingTop:1,
+		paddingBottom:1,
+		paddingLeft: 1,
+		paddingRight: 1,
+		height: 55,
+		width: 55,
+		marginLeft: 12,
+		marginBottom: 14,
+		flexDirection: 'column',
+		justifyContent: 'center',
+		alignItems: 'center'
+	},
+	dayInputNotChoosen: {
+		backgroundColor: 'rgb(232, 233, 234)',
 		borderRadius:5,
 		borderWidth: 1,
 		borderColor: '#fff',
@@ -171,9 +207,13 @@ const styles = StyleSheet.create({
 		justifyContent: 'flex-end',
 		flexWrap: 'wrap'
 	},
-	dayTxt: {
-		color: 'rgb(95, 135, 238)',
+	dayTxtChoosen: {
 		fontSize: 32,
+		color: 'rgb(95, 135, 238)'
+	},
+	dayTxtNotChoosen: {
+		fontSize: 32,
+		color: 'rgb(148, 159, 170)'
 	}
 });
 

@@ -17,6 +17,7 @@
     "eslint-plugin-react": "^6.6.0",
     "eslint-plugin-react-native": "^2.0.0",
     "eslint-watch": "2.1.14",
+    "immutable": "^3.8.1",
     "lodash": "^4.16.6",
     "moment": "^2.16.0",
     "native-base": "^2.3.1",
