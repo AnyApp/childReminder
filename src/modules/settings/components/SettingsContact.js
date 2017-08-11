@@ -54,7 +54,7 @@ constructor(props) {
 			<View style={styles.container}>
 				<View style= {{flexDirection: 'row', justifyContent: 'center', paddingTop: 20}}>
 					<View style={styles.headerContainer}>
-					<Text style={styles.headerTxt}>1.</Text>  
+					<Text style={styles.headerTxt}>.1</Text>  
 				</View>
 				</View>
 				<View style={styles.inputContainer}>
