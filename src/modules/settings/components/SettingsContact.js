@@ -51,45 +51,88 @@ constructor(props) {
 	render() {
 		const prefixList = ["050", "051", "052", "053", "054", "055", "056", "058", "059" ];
 		return (
-			<View style={styles.container}>
-				<View style= {{flexDirection: 'row', justifyContent: 'center', paddingTop: 20}}>
-					<View style={styles.headerContainer}>
-					<Text style={styles.headerTxt}>.1</Text>  
-				</View>
-				</View>
-				<View style={styles.inputContainer}>
-					<Text style={styles.txt}>שם איש קשר</Text>
-					<TextInput
-						style={styles.input}
-						onChangeText={(text) => this._updateUser(0,"name",text)}
-							value={this.state.users.get(0).get("name")}
-					/>
-				</View>
-				<View style={styles.inputContainer}>
-					<Text style={styles.txt}>טלפון</Text>
-					<View style={styles.inputPhoneNumber}>
-						<ModalDropdown 
-							options={prefixList}
-							animated={true}
-							onSelect={(idx, value) => this._updateUser(0, "phonePrefix", value)}
-						>
-						<View style={styles.inputPrefix}>
-							<Text style={styles.inputPrefixText}>
-								  {this.state.users.get(0).get("phonePrefix")}  
-							</Text>
-							<Icon name="arrow-drop-down" size={23} color="grey" style={styles.selectIcon} />
-							</View>
-						</ModalDropdown>
-						<Text style={{textAlign: "center"}}> - </Text>
+			<ScrollView>
+				<View style={styles.container}>
+					<View style= {{flexDirection: 'row', justifyContent: 'center', paddingTop: 20}}>
+						<View style={styles.headerContainer}>
+						<Text style={styles.headerTxt}>.1</Text>  
+					</View>
+					</View>
+					<View style={styles.inputContainer}>
+						<Text style={styles.txt}>שם איש קשר</Text>
 						<TextInput
 							style={styles.input}
-							onChangeText={(text) => this._updateUser(0,"phoneSuffix",text)}
-							value={this.state.users.get(0).get("phoneSuffix")}
-							keyboardType="numeric"
+							onChangeText={(text) => this._updateUser(0,"name",text)}
+								value={this.state.users.get(0).get("name")}
 						/>
 					</View>
+					<View style={styles.inputContainer}>
+						<Text style={styles.txt}>טלפון</Text>
+						<View style={styles.inputPhoneNumber}>
+							<ModalDropdown 
+								options={prefixList}
+								animated={true}
+								onSelect={(idx, value) => this._updateUser(0, "phonePrefix", value)}
+							>
+							<View style={styles.inputPrefix}>
+								<Text style={styles.inputPrefixText}>
+									{this.state.users.get(0).get("phonePrefix")}  
+								</Text>
+								<Icon name="arrow-drop-down" size={23} color="grey" style={styles.selectIcon} />
+								</View>
+							</ModalDropdown>
+							<Text style={{textAlign: "center"}}> - </Text>
+							<TextInput
+								style={styles.input}
+								onChangeText={(text) => this._updateUser(0,"phoneSuffix",text)}
+								value={this.state.users.get(0).get("phoneSuffix")}
+								keyboardType="numeric"
+							/>
+						</View>
+					</View>
 				</View>
-			</View>
+				<View style={styles.container}>
+					<View style= {{flexDirection: 'row', justifyContent: 'center', paddingTop: 20}}>
+						<View style={styles.headerContainer}>
+						<Text style={styles.headerTxt}>.1</Text>  
+					</View>
+					</View>
+					<View style={styles.inputContainer}>
+						<Text style={styles.txt}>שם איש קשר</Text>
+						<TextInput
+							style={styles.input}
+							onChangeText={(text) => this._updateUser(0,"name",text)}
+								value={this.state.users.get(0).get("name")}
+						/>
+					</View>
+					<View style={styles.inputContainer}>
+						<Text style={styles.txt}>טלפון</Text>
+						<View style={styles.inputPhoneNumber}>
+							<ModalDropdown 
+								options={prefixList}
+								animated={true}
+								onSelect={(idx, value) => this._updateUser(0, "phonePrefix", value)}
+							>
+							<View style={styles.inputPrefix}>
+								<Text style={styles.inputPrefixText}>
+									{this.state.users.get(0).get("phonePrefix")}  
+								</Text>
+								<Icon name="arrow-drop-down" size={23} color="grey" style={styles.selectIcon} />
+								</View>
+							</ModalDropdown>
+							<Text style={{textAlign: "center"}}> - </Text>
+							<TextInput
+								style={styles.input}
+								onChangeText={(text) => this._updateUser(0,"phoneSuffix",text)}
+								value={this.state.users.get(0).get("phoneSuffix")}
+								keyboardType="numeric"
+							/>
+						</View>
+					</View>
+				</View>
+			</ScrollView>
+			
+			
 		);
 	}
 }
