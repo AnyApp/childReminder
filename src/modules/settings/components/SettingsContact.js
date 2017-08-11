@@ -53,7 +53,7 @@ constructor(props) {
 		return (
 			<ScrollView>
 				<View style={styles.container}>
-					<View style= {{flexDirection: 'row', justifyContent: 'center', paddingTop: 20}}>
+					<View style= {{flexDirection: 'row', justifyContent: 'center'}}>
 						<View style={styles.headerContainer}>
 						<Text style={styles.headerTxt}>.1</Text>  
 					</View>
@@ -94,15 +94,15 @@ constructor(props) {
 				<View style={styles.container}>
 					<View style= {{flexDirection: 'row', justifyContent: 'center', paddingTop: 20}}>
 						<View style={styles.headerContainer}>
-						<Text style={styles.headerTxt}>.1</Text>  
+						<Text style={styles.headerTxt}>.2</Text>  
 					</View>
 					</View>
 					<View style={styles.inputContainer}>
 						<Text style={styles.txt}>שם איש קשר</Text>
 						<TextInput
 							style={styles.input}
-							onChangeText={(text) => this._updateUser(0,"name",text)}
-								value={this.state.users.get(0).get("name")}
+							onChangeText={(text) => this._updateUser(1,"name",text)}
+								value={this.state.users.get(1).get("name")}
 						/>
 					</View>
 					<View style={styles.inputContainer}>
@@ -111,11 +111,11 @@ constructor(props) {
 							<ModalDropdown 
 								options={prefixList}
 								animated={true}
-								onSelect={(idx, value) => this._updateUser(0, "phonePrefix", value)}
+								onSelect={(idx, value) => this._updateUser(1, "phonePrefix", value)}
 							>
 							<View style={styles.inputPrefix}>
 								<Text style={styles.inputPrefixText}>
-									{this.state.users.get(0).get("phonePrefix")}  
+									{this.state.users.get(1).get("phonePrefix")}  
 								</Text>
 								<Icon name="arrow-drop-down" size={23} color="grey" style={styles.selectIcon} />
 								</View>
@@ -123,8 +123,8 @@ constructor(props) {
 							<Text style={{textAlign: "center"}}> - </Text>
 							<TextInput
 								style={styles.input}
-								onChangeText={(text) => this._updateUser(0,"phoneSuffix",text)}
-								value={this.state.users.get(0).get("phoneSuffix")}
+								onChangeText={(text) => this._updateUser(1,"phoneSuffix",text)}
+								value={this.state.users.get(1).get("phoneSuffix")}
 								keyboardType="numeric"
 							/>
 						</View>
@@ -178,18 +178,18 @@ const styles = StyleSheet.create({
 		flex: 1,
 		flexDirection: 'column',
 		justifyContent: 'flex-start',
-		alignItems: 'stretch'
+		alignItems: 'stretch',
 	},
 	inputPhoneNumber: {
 		flexDirection: 'row',
 		justifyContent: 'flex-start',
 		alignItems: 'center',
 		height: 35,
-		marginTop: 30
+		marginTop: 5
 	},
 	inputContainer: {
 		height: 65,
-		marginTop: 30,
+		marginTop: 20,
 		marginRight: 20,
 		marginLeft: 20
 	},
@@ -214,8 +214,12 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		justifyContent: 'flex-start',
 		alignItems: 'center',
-		borderColor: 'black',
-		borderWidth: 1
+		borderColor: 'white',
+		borderWidth: 0.3,
+		shadowColor: 'grey',
+		shadowOffset: { width: 0.1, height: 0.3 }, 
+		shadowOpacity: 0.6,
+		shadowRadius: 0.2
 	},
 	inputPrefixText: {
 		flex: 2,
