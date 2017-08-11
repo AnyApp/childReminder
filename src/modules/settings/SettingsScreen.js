@@ -27,7 +27,7 @@ class SettingsScreen extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			selectedIndex: 1
+			selectedIndex: 0
 		};
 		this.updateIndex = this.updateIndex.bind(this);
 		this.renderState = this.renderState.bind(this);
